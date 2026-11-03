@@ -77,16 +77,16 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   return (
     <div className="space-y-10">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-stone-200/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white dark:bg-stone-900 p-6 rounded-3xl border border-stone-200/80 dark:border-stone-800 shadow-xs">
         <div>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">
-            <Camera className="w-4 h-4 text-amber-600" />
+          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider mb-1">
+            <Camera className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             <span>Mural de Fotos & Memórias</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-stone-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
             Nossos Registros de Anápolis
           </h2>
-          <p className="text-xs sm:text-sm text-stone-600 mt-0.5">
+          <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 mt-0.5">
             Colecione os melhores momentos, comidas e risadas do trio durante a viagem.
           </p>
         </div>
@@ -105,9 +105,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
 
       {/* Polaroid Gallery Grid */}
       <div>
-        <h3 className="text-base font-bold text-stone-900 mb-4 flex items-center gap-2">
+        <h3 className="text-base font-bold text-stone-900 dark:text-stone-100 mb-4 flex items-center gap-2">
           <span>Fotos Reveladas do Trio</span>
-          <span className="text-xs text-stone-500 font-normal">
+          <span className="text-xs text-stone-500 dark:text-stone-400 font-normal">
             ({photos.length} lembranças)
           </span>
         </h3>
@@ -120,10 +120,10 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
             return (
               <div
                 key={photo.id}
-                className="bg-white p-3.5 pb-4 rounded-2xl shadow-xs border border-stone-200 hover:shadow-md transition-all flex flex-col group"
+                className="bg-white dark:bg-stone-900 p-3.5 pb-4 rounded-2xl shadow-xs border border-stone-200 dark:border-stone-800 hover:shadow-md transition-all flex flex-col group"
               >
                 {/* Photo frame */}
-                <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-stone-100 mb-3 border border-stone-100">
+                <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 mb-3 border border-stone-100 dark:border-stone-800">
                   <img
                     src={photo.imageUrl}
                     alt={photo.title}
@@ -144,18 +144,18 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                 {/* Caption & Details */}
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-bold text-stone-900 text-sm leading-snug">
+                    <h4 className="font-bold text-stone-900 dark:text-stone-100 text-sm leading-snug">
                       {photo.title}
                     </h4>
-                    <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                    <p className="text-xs text-stone-600 dark:text-stone-300 mt-1 leading-relaxed">
                       {photo.caption}
                     </p>
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
-                    <div className="text-stone-500 flex items-center gap-1 text-[11px]">
+                  <div className="mt-3 pt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-xs">
+                    <div className="text-stone-500 dark:text-stone-400 flex items-center gap-1 text-[11px]">
                       <span>{author?.avatar}</span>
-                      <span className="font-medium text-stone-700">{author?.name}</span>
+                      <span className="font-medium text-stone-700 dark:text-stone-300">{author?.name}</span>
                       <span>·</span>
                       <span>{photo.date}</span>
                     </div>
@@ -164,8 +164,8 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                       onClick={() => onToggleLike(photo.id)}
                       className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold transition-colors ${
                         isLiked
-                          ? 'bg-rose-50 text-rose-600'
-                          : 'text-stone-500 hover:bg-stone-100'
+                          ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400'
+                          : 'text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800'
                       }`}
                       title="Curtir esta foto"
                     >
@@ -186,17 +186,17 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
       <div>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-base font-bold text-stone-900 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <h3 className="text-base font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>Missões Fotográficas Planejadas</span>
             </h3>
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-stone-500 dark:text-stone-400">
               Fotos que combinamos de não esquecer de tirar em Anápolis!
             </p>
           </div>
           <button
             onClick={onOpenNewItem}
-            className="text-xs font-semibold text-amber-700 hover:text-amber-800"
+            className="text-xs font-semibold text-amber-700 dark:text-amber-400 hover:text-amber-800"
           >
             + Nova Missão de Foto
           </button>
@@ -222,17 +222,17 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
       {/* Modal: Add Photo */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-xl border border-stone-200">
-            <h3 className="text-lg font-bold text-stone-900 mb-1">
+          <div className="bg-white dark:bg-stone-900 rounded-3xl max-w-lg w-full p-6 shadow-xl border border-stone-200 dark:border-stone-800">
+            <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-1">
               Adicionar Nova Foto ao Mural
             </h3>
-            <p className="text-xs text-stone-500 mb-4">
+            <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
               Envie uma foto do seu dispositivo ou cole um link de imagem.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-xs font-semibold text-stone-700 block mb-1">
+                <label className="text-xs font-semibold text-stone-700 dark:text-stone-300 block mb-1">
                   Título da Foto
                 </label>
                 <input
@@ -241,12 +241,12 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                   placeholder="Ex: Pôr do sol no morro, Café da manhã..."
-                  className="w-full px-3 py-2 text-sm rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3 py-2 text-sm rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-stone-700 block mb-1">
+                <label className="text-xs font-semibold text-stone-700 dark:text-stone-300 block mb-1">
                   Legenda / História Engraçada
                 </label>
                 <textarea
@@ -254,19 +254,19 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                   value={caption}
                   onChange={e => setCaption(e.target.value)}
                   placeholder="Ex: Esse foi o momento exato em que a Bia deixou o pastel cair..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-semibold text-stone-700 block mb-1">
+                  <label className="text-xs font-semibold text-stone-700 dark:text-stone-300 block mb-1">
                     Quem Tirou a Foto?
                   </label>
                   <select
                     value={takenBy}
                     onChange={e => setTakenBy(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
                   >
                     {travelers.map(t => (
                       <option key={t.id} value={t.id}>
@@ -277,7 +277,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-stone-700 block mb-1">
+                  <label className="text-xs font-semibold text-stone-700 dark:text-stone-300 block mb-1">
                     Localização em Anápolis
                   </label>
                   <input
@@ -285,14 +285,14 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                     value={location}
                     onChange={e => setLocation(e.target.value)}
                     placeholder="Ex: Parque Ipiranga"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
               </div>
 
               {/* Upload or URL */}
               <div>
-                <label className="text-xs font-semibold text-stone-700 block mb-1">
+                <label className="text-xs font-semibold text-stone-700 dark:text-stone-300 block mb-1">
                   Foto (Carregar Arquivo ou URL)
                 </label>
                 <div className="space-y-2">
@@ -300,9 +300,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                     type="file"
                     accept="image/*"
                     onChange={handleFileUpload}
-                    className="w-full text-xs text-stone-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-100 file:text-amber-800 hover:file:bg-amber-200 cursor-pointer"
+                    className="w-full text-xs text-stone-500 dark:text-stone-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-100 dark:file:bg-amber-950/60 file:text-amber-800 dark:file:text-amber-300 hover:file:bg-amber-200 cursor-pointer"
                   />
-                  <div className="text-[11px] text-stone-400 text-center">ou cole um link:</div>
+                  <div className="text-[11px] text-stone-400 dark:text-stone-500 text-center">ou cole um link:</div>
                   <input
                     type="url"
                     value={imageUrl.startsWith('data:') ? '' : imageUrl}
@@ -311,12 +311,12 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                       setPreviewError(false);
                     }}
                     placeholder="https://... ou escolha um arquivo acima"
-                    className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
                   />
                 </div>
 
                 {imageUrl && (
-                  <div className="mt-2 rounded-xl overflow-hidden h-32 border border-stone-200 bg-stone-50">
+                  <div className="mt-2 rounded-xl overflow-hidden h-32 border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-800">
                     <img
                       src={imageUrl}
                       alt="Preview"
@@ -331,7 +331,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 text-xs font-medium text-stone-600 hover:bg-stone-100 rounded-xl"
+                  className="px-4 py-2 text-xs font-medium text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl"
                 >
                   Cancelar
                 </button>

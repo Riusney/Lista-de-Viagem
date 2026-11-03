@@ -35,20 +35,20 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-stone-200 my-8">
+      <div className="bg-white dark:bg-stone-900 rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-stone-200 dark:border-stone-800 my-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
-              <Users className="w-5 h-5 text-amber-600" />
+            <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+              <Users className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               <span>Personalizar os 3 Viajantes</span>
             </h3>
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-stone-500 dark:text-stone-400">
               Coloque os nomes reais dos 3 amigos que vão para Anápolis!
             </p>
           </div>
           <button
             onClick={onClose}
-            className="text-stone-400 hover:text-stone-700 p-1.5 rounded-lg hover:bg-stone-100"
+            className="text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300 p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
           >
             <X className="w-5 h-5" />
           </button>
@@ -59,17 +59,17 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
             {editedTravelers.map((traveler, index) => (
               <div
                 key={traveler.id}
-                className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-3"
+                className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/70 border border-stone-200/80 dark:border-stone-700/80 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-800 uppercase tracking-wide">
+                  <span className="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wide">
                     Viajante {index + 1}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                    <label className="text-[11px] font-semibold text-stone-600 dark:text-stone-300 block mb-1">
                       Nome Completo
                     </label>
                     <input
@@ -77,12 +77,12 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
                       required
                       value={traveler.name}
                       onChange={e => handleChange(traveler.id, 'name', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white"
+                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 dark:border-stone-600 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                    <label className="text-[11px] font-semibold text-stone-600 dark:text-stone-300 block mb-1">
                       Apelido no App
                     </label>
                     <input
@@ -90,12 +90,12 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
                       required
                       value={traveler.nickname}
                       onChange={e => handleChange(traveler.id, 'nickname', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white"
+                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 dark:border-stone-600 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-semibold text-stone-600 block mb-1">
+                    <label className="text-[11px] font-semibold text-stone-600 dark:text-stone-300 block mb-1">
                       Papel / Função no Trio
                     </label>
                     <input
@@ -103,14 +103,14 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
                       value={traveler.role}
                       onChange={e => handleChange(traveler.id, 'role', e.target.value)}
                       placeholder="Ex: Motorista, DJ..."
-                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white"
+                      className="w-full px-3 py-1.5 text-xs rounded-xl border border-stone-300 dark:border-stone-600 focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100"
                     />
                   </div>
                 </div>
 
                 {/* Emoji choices */}
                 <div>
-                  <span className="text-[11px] font-semibold text-stone-500 block mb-1">
+                  <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 block mb-1">
                     Escolha um Avatar:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
@@ -122,7 +122,7 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
                         className={`w-7 h-7 rounded-lg text-sm flex items-center justify-center transition-all ${
                           traveler.avatar === em
                             ? 'bg-amber-500 text-white scale-110 shadow-xs'
-                            : 'bg-white border border-stone-200 hover:bg-stone-100'
+                            : 'bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800'
                         }`}
                       >
                         {em}
@@ -134,11 +134,11 @@ export const EditTravelersModal: React.FC<EditTravelersModalProps> = ({
             ))}
           </div>
 
-          <div className="flex gap-2 justify-end pt-3 border-t border-stone-100">
+          <div className="flex gap-2 justify-end pt-3 border-t border-stone-100 dark:border-stone-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-stone-600 hover:bg-stone-100 rounded-xl"
+              className="px-4 py-2 text-xs font-medium text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl"
             >
               Cancelar
             </button>

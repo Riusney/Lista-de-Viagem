@@ -1,5 +1,7 @@
 export type ActivityCategory = 'comidas' | 'lugares' | 'jogos' | 'fotos' | 'malas';
 
+export type ShoppingCategory = 'mercado' | 'lanches' | 'bebidas' | 'refeicoes';
+
 export interface Traveler {
   id: string;
   name: string;
@@ -58,6 +60,28 @@ export interface PhotoMemory {
   location?: string;
 }
 
+export interface ShoppingItem {
+  id: string;
+  name: string;
+  category: ShoppingCategory;
+  requestedBy: string; // traveler id
+  bought: boolean;
+  boughtBy?: string;
+  quantity?: string;
+  notes?: string;
+}
+
+export interface FoodDishWish {
+  id: string;
+  dishName: string;
+  mealType: 'cafe' | 'almoco' | 'jantar' | 'petisco';
+  whoWants: string[]; // traveler ids
+  suggestedBy: string; // traveler id
+  ingredients: string;
+  made: boolean;
+  notes?: string;
+}
+
 export interface TripState {
   tripName: string;
   destination: string;
@@ -66,5 +90,9 @@ export interface TripState {
   items: TripItem[];
   gameMatches: GameMatch[];
   photos: PhotoMemory[];
+  shoppingList: ShoppingItem[];
+  foodWishes: FoodDishWish[];
+  quickNotepad: string;
   activeTravelerId: string;
+  theme: 'light' | 'dark';
 }

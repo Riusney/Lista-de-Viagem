@@ -1,4 +1,4 @@
-import { ActivityCategory, GameMatch, Traveler, TripItem } from '../types/trip';
+import { ActivityCategory, GameMatch, Traveler, TripItem, ShoppingItem, FoodDishWish } from '../types/trip';
 
 export interface CategorySummary {
   category: ActivityCategory;
@@ -169,5 +169,53 @@ export function toggleVote(item: TripItem, travelerId: string): TripItem {
   return {
     ...item,
     votes: updatedVotes,
+  };
+}
+
+export function toggleShoppingItem(
+  item: ShoppingItem,
+  travelerId: string
+): ShoppingItem {
+  if (item.bought) {
+    return {
+      ...item,
+      bought: false,
+      boughtBy: undefined,
+    };
+  }
+  return {
+    ...item,
+    bought: true,
+    boughtBy: travelerId,
+  };
+}
+
+export function calculateShoppingStats(items: ShoppingItem[]): {
+  total: number;
+  bought: number;
+  pending: number;
+  percentage: number;
+} {
+  const total = items.length;
+  const bought = items.filter(i => i.bought).length;
+  const pending = total - bought;
+  const percentage = total > 0 ? Math.round((bought / total) * 100) : 0;
+  return { total, bought, pending, percentage };
+}
+
+export function toggleDishWish(dish: FoodDishWish): FoodDishWish {
+  return {
+    ...dish,
+    made: !dish.made,
+  };
+}
+
+export function toggleDishVote(dish: FoodDishWish, travelerId: string): FoodDishWish {
+  const exists = dish.whoWants.includes(travelerId);
+  return {
+    ...dish,
+    whoWants: exists
+      ? dish.whoWants.filter(id => id !== travelerId)
+      : [...dish.whoWants, travelerId],
   };
 }

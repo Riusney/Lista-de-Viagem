@@ -6,8 +6,12 @@ import {
   calculateScoreboard,
   toggleItemCompletion,
   toggleVote,
+  toggleShoppingItem,
+  calculateShoppingStats,
+  toggleDishWish,
+  toggleDishVote,
 } from './tripLogic';
-import { Traveler, TripItem, GameMatch } from '../types/trip';
+import { Traveler, TripItem, GameMatch, ShoppingItem, FoodDishWish } from '../types/trip';
 
 const mockTravelers: Traveler[] = [
   { id: '1', name: 'Gabriel', nickname: 'Biel', avatar: '🎒', accentColor: '#3b82f6', role: 'Navegador' },
@@ -131,4 +135,50 @@ test('toggleVote adds and removes votes correctly', () => {
 
   const unvoted = toggleVote(voted, '3');
   assert.deepEqual(unvoted.votes, ['1']);
+});
+
+test('toggleShoppingItem and calculateShoppingStats work correctly', () => {
+  const shopItem: ShoppingItem = {
+    id: 's1',
+    name: 'Pão de Queijo Congelado',
+    category: 'lanches',
+    requestedBy: '1',
+    bought: false,
+    quantity: '1 pacote',
+  };
+
+  const bought = toggleShoppingItem(shopItem, '2');
+  assert.equal(bought.bought, true);
+  assert.equal(bought.boughtBy, '2');
+
+  const unbought = toggleShoppingItem(bought, '2');
+  assert.equal(unbought.bought, false);
+  assert.equal(unbought.boughtBy, undefined);
+
+  const stats = calculateShoppingStats([shopItem, bought]);
+  assert.equal(stats.total, 2);
+  assert.equal(stats.bought, 1);
+  assert.equal(stats.pending, 1);
+  assert.equal(stats.percentage, 50);
+});
+
+test('toggleDishWish and toggleDishVote work as expected', () => {
+  const dish: FoodDishWish = {
+    id: 'd1',
+    dishName: 'Arroz com Pequi da Bia',
+    mealType: 'almoco',
+    whoWants: ['1', '3'],
+    suggestedBy: '3',
+    ingredients: 'Arroz, pequi cozido, alho, cebola, cheiro verde',
+    made: false,
+  };
+
+  const updated = toggleDishWish(dish);
+  assert.equal(updated.made, true);
+
+  const voted = toggleDishVote(dish, '2');
+  assert.deepEqual(voted.whoWants, ['1', '3', '2']);
+
+  const unvoted = toggleDishVote(voted, '1');
+  assert.deepEqual(unvoted.whoWants, ['3', '2']);
 });
