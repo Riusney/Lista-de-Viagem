@@ -1,0 +1,6 @@
+{
+  "name": "Diário & Roteiro Anápolis",
+  "description": "Roteiro interativo e checklist de viagem para Anápolis feito com carinho para 3 amigos: comidas típicas goianas, lugares para visitar, mural de fotos e noites de jogos com placar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
